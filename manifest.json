@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Wordle Color Customizer",
-  "version": "1.2.0",
+  "name": "Wordle Themes",
+  "version": "1.0.0",
   "icons": {
     "48": "icons/48.png",
     "128": "icons/128.png"
@@ -9,7 +9,7 @@
   "description": "Use custom colors on Wordle!",
   "content_scripts": [
     {
-      "css": ["wordle.css"],
+      "css": ["wordle.css", "fonts.css"],
       "matches": [
         "https://www.powerlanguage.co.uk/wordle/",
         "https://www.nytimes.com/games/wordle*"

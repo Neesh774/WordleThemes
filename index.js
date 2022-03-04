@@ -18,6 +18,9 @@ contentSlot.addEventListener("slotchange", () => {
   }
 });
 document.body.className = currentTheme;
+gameApp.querySelector(
+  ".title"
+).style.fontFamily = `var(--font-${currentTheme.replace("theme-", "")})`;
 
 /** add color settings section to the settings menu */
 function initSettings(gameSettings) {
@@ -52,6 +55,38 @@ const colors = [
     name: "Ragtag",
     value: "ragtag",
   },
+  {
+    name: "Natural",
+    value: "natural",
+  },
+  {
+    name: "Candy",
+    value: "candy",
+  },
+  {
+    name: "Nord",
+    value: "nord",
+  },
+  {
+    name: "Lovelace",
+    value: "lovelace",
+  },
+  {
+    name: "Beach",
+    value: "beach",
+  },
+  {
+    name: "Mesa",
+    value: "mesa",
+  },
+  {
+    name: "Shamrock",
+    value: "shamrock",
+  },
+  {
+    name: "Tron",
+    value: "tron",
+  },
 ];
 function colorSetting(title, description) {
   const setting = document.createElement("div");
@@ -63,13 +98,17 @@ function colorSetting(title, description) {
         <div class="description">${description}</div>
     </div>
     <div class="control">
-        <select id="${lower}-color-select" style="padding: 4px 0;">
+        <select id="${lower}-color-select" style="padding: 6px 2px; background-color: var(--input-bg); outline: none; border: 2px solid var(--color-tone-4); color: var(--color-tone-1); border-radius: 4px;">
             ${colors
               .map(
                 (c) =>
                   `<option ${
                     `theme-${c.value}` == currentTheme ? "selected" : ""
-                  } value="${c.value}">${c.name}</option>`
+                  } value="${
+                    c.value
+                  }" style="background-color: var(--color-background); color: var(--color-tone-1) outline: none; border: none;">${
+                    c.name
+                  }</option>`
               )
               .join("")}
         </select>
@@ -85,9 +124,10 @@ function colorSetting(title, description) {
 }
 
 function onSelectTheme(value) {
-  console.log("selected");
   //replace anything in the body class with the theme name
   document.body.className = `theme-${value}`;
   currentTheme = `theme-${value}`;
+  const title = gameApp.querySelector("header .title");
+  title.style.fontFamily = `var(--font-${value})`;
   save();
 }
